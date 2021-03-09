@@ -15,14 +15,15 @@ function Nav() {
     },
   ]
 
-  function categorySelected(name) {
-    console.log(`${name} clicked`)
+  function handleClick(item) {
+    console.log(`${item} clicked`)
+    return item
   }
 
   return (
     <header>
       <h2>
-        <a href='/'>
+        <a data-testid='link' href='/'>
           <span role='img' aria-label='camera'>
             {' '}
             📸
@@ -33,14 +34,20 @@ function Nav() {
       <nav>
         <ul className='flex-row'>
           <li className='mx-2'>
-            <a href='#about'>About me</a>
+            <a
+              data-testid='about'
+              href='#about'
+              onClick={() => handleClick('About')}
+            >
+              About me
+            </a>
           </li>
           <li>
             <span>Contact</span>
           </li>
           {categories.map((category) => (
             <li className='mx-1' key={category.name}>
-              <span onClick={() => categorySelected(category.name)}>
+              <span onClick={() => handleClick(category.name)}>
                 {category.name}
               </span>
             </li>
